@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Yuki 🤍</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #ffe4ec);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom, #ffffff, #ffe4ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .overlay h1 { color: #e75480; margin-bottom: 15px; }
+
+    .enter-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: #e75480;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1 { color: #e75480; text-align: center; margin-bottom: 5px; }
+    h2 { text-align: center; margin-top: 0; color: #333; }
+
+    .subtitle { text-align: center; color: #e87ca1; font-style: italic; margin-bottom: 20px; }
+
+    .message {
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .music-btn {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #e75480;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .gallery-title { text-align: center; color: #e75480; font-weight: bold; margin-bottom: 10px; }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .slideshow img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .slideshow img.active { opacity: 1; }
+
+    .footer { margin-top: 20px; text-align: center; font-size: 13px; color: #777; }
+
+    .petal {
+      position: fixed;
+      top: -10px;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50% 50% 50% 0;
+      opacity: 0.7;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10px) rotate(0deg); }
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);} 
+      to {opacity: 1; transform: translateY(0);} 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay">
+    <h1>🤍 Hai Yuki 🤍</h1>
+    <p>Ada sesuatu yang spesial buat kamu hari ini...</p>
+    <button class="enter-btn" onclick="enterSite()">Buka Hadiahnya 🎁</button>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Happy 20th Birthday 🎂</h1>
+      <h2>Nadin Yukita Kenzabrina</h2>
+      <div class="subtitle">Untuk Yuki tercinta 🤍🌸</div>
+
+      <div class="message">
+        Selamat ulang tahun yang ke-20, Yuki 🤍  
+        <br><br>
+        Semoga setiap langkahmu selalu dipenuhi kebahagiaan,  
+        tawa yang tidak pernah habis, dan mimpi yang satu per satu terwujud.  
+        <br><br>
+        Terima kasih sudah hadir dan membuat dunia terasa lebih indah.
+      </div>
+
+      <button class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Music</button>
+
+      <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+      </audio>
+
+      <div class="gallery-title">📸 Kenangan Kita</div>
+
+      <div class="slideshow">
+        <img src="foto1.jpg" class="active" alt="Kenangan 1">
+        <img src="foto2.jpg" alt="Kenangan 2">
+        <img src="foto3.jpg" alt="Kenangan 3">
+        <img src="foto4.jpg" alt="Kenangan 4">
+        <img src="foto5.jpg" alt="Kenangan 5">
+        <img src="foto6.jpg" alt="Kenangan 6">
+        <img src="foto7.jpg" alt="Kenangan 7">
+      </div>
+
+      <div class="footer">
+        Dibuat dengan 🤍 khusus untuk Yuki
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById("music");
+    const overlay = document.getElementById("overlay");
+
+    function toggleMusic() {
+      if (music.paused) music.play();
+      else music.pause();
+    }
+
+    function enterSite() {
+      overlay.style.display = "none";
+      music.play().catch(() => {});
+    }
+
+    const slides = document.querySelectorAll('.slideshow img');
+    let index = 0;
+
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 3000);
+
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+      petal.style.opacity = Math.random();
+      petal.style.transform = `scale(${Math.random()})`;
+      document.body.appendChild(petal);
+
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    setInterval(createPetal, 300);
+  </script>
+
+</body>
+</html>
